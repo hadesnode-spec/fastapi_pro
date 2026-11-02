@@ -34,16 +34,6 @@ def unauthorized(detail: str = "Not authenticated") -> HTTPException:
         detail=detail,
         headers={"WWW-Authenticate": "Bearer"},
     )
-def get_token_payload(
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
-) -> dict:
-    if credentials is None:
-        raise unauthorized()
-    try:
-        return decode_access_token(credentials.credentials)
-    except jwt.PyJWTError:
-        raise unauthorized("Invalid or expired token")
-
 
 def get_current_user(
     payload: dict = Depends(get_token_payload),
