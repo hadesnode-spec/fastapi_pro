@@ -14,12 +14,10 @@ class User(Base):
     is_active = sqlalchemy.Column(Boolean, nullable=False, default=True)  
     created_at = sqlalchemy.Column(DateTime(timezone=True), server_default=sqlalchemy.func.now(), nullable=False)  
     products = relationship("Product", back_populates="owner")
-    refresh_tokens = relationship(
-        "RefreshToken", back_populates="user", cascade="all, delete-orphan"
-    ) 
+    refresh_tokens = relationship("RefreshToken", back_populates="user", cascade="all, delete-orphan") 
+
 class Product(Base):
     __tablename__ = "products"
-
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     description = Column(Text, nullable=False)
