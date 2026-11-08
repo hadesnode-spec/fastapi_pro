@@ -1,0 +1,22 @@
+fastapi
+uvicorn[standard]
+
+
+sqlalchemy
+alembic
+psycopg2-binary
+
+
+redis
+
+PyJWT
+argon2-cffi
+
+pydantic
+pydantic-settings
+python-dotenv
+email-validator
+
+# Testing
+pytest
+httpx
